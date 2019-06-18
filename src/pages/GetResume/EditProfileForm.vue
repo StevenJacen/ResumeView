@@ -67,9 +67,6 @@
               <md-textarea v-model="aboutme"></md-textarea>
             </md-field>
           </div>
-          <div class="md-layout-item md-size-100 text-right">
-            <md-button class="md-raised md-success">新建简历</md-button>
-          </div>
         </div>
       </md-card-content>
     </md-card>
