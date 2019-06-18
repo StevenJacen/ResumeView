@@ -21,7 +21,6 @@
                         pnum:"T-ss-001",
                         pname:"xx1银行项目组",
                         preser:"张三"
-
                     },
                     {
                         pnum:"T-ss-002",
