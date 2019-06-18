@@ -1,58 +1,64 @@
 <template>
 
     <div class="content">
-        <md-dialog :md-active.sync="showDialog" >
+        <md-dialog :md-active.sync="showDialog">
             <div>
-                <md-card class="md-card-plain">
-                    <md-card-header data-background-color="blue">
-                        <h5 class="title">需求详情列表 </h5>
-                    </md-card-header>
-                    <md-card-content>
-                        <md-table v-model="requireDetail" :table-header-color="tableHeaderColor">
-                            <md-table-row slot="md-table-row" slot-scope="{ item }">
-                                <md-table-cell md-label="项目名称">{{ item.prjname }}</md-table-cell>
-                                <md-table-cell md-label="类型">{{ item.type }}</md-table-cell>
-                                <md-table-cell md-label="数量">{{ item.num }}</md-table-cell>
-                                <md-table-cell md-label="符合">{{ item.conform }}</md-table-cell>
-                                <md-table-cell md-label="发布时间">{{ item.time }}</md-table-cell>
-                                <!--<md-table-cell md-label="数量" v-if="contenteditable===true" >-->
-                                <!--<Input style="width: 60px" v-bind:value="item.num"/>-->
-                                <!--</md-table-cell>-->
-                                <md-table-cell md-label="操作" style="width: 100px;">
-                                    <!--<md-button class="md-just-icon md-simple md-primary" v-if="contenteditable===false" @click="contenteditable = true">-->
-                                    <!--<md-icon>edit</md-icon>-->
-                                    <!--<md-tooltip md-direction="top">编辑</md-tooltip>-->
-                                    <!--</md-button>-->
-                                    <!--<md-button class="md-just-icon md-simple md-primary" v-if="contenteditable===true" @click="contenteditable = false">-->
-                                    <!--<md-icon>save</md-icon>-->
-                                    <!--<md-tooltip md-direction="top">保存</md-tooltip>-->
-                                    <!--</md-button>-->
-                                    <md-button class="md-just-icon md-simple md-danger">
-                                        <md-icon>close</md-icon>
-                                        <md-tooltip md-direction="top">废弃</md-tooltip>
-                                    </md-button>
-                                </md-table-cell>
-                            </md-table-row>
-                        </md-table>
-                    </md-card-content>
-                </md-card>
+                <scroll>
+                    <md-card class="md-card-plain">
+                        <md-card-header data-background-color="blue">
+                            <h5 class="title">需求详情列表 </h5>
+                        </md-card-header>
+                        <md-card-content>
+                            <md-table v-model="requireDetail" :table-header-color="tableHeaderColor">
+                                <md-table-row slot="md-table-row" slot-scope="{ item }">
+                                    <md-table-cell md-label="项目名称">{{ item.prjname }}</md-table-cell>
+                                    <md-table-cell md-label="类型">{{ item.type }}</md-table-cell>
+                                    <md-table-cell md-label="数量">{{ item.num }}</md-table-cell>
+                                    <md-table-cell md-label="符合">{{ item.conform }}</md-table-cell>
+                                    <md-table-cell md-label="发布时间">{{ item.time }}</md-table-cell>
+                                    <!--<md-table-cell md-label="数量" v-if="contenteditable===true" >-->
+                                    <!--<Input style="width: 60px" v-bind:value="item.num"/>-->
+                                    <!--</md-table-cell>-->
+                                    <md-table-cell md-label="操作" style="width: 100px;">
+                                        <!--<md-button class="md-just-icon md-simple md-primary" v-if="contenteditable===false" @click="contenteditable = true">-->
+                                        <!--<md-icon>edit</md-icon>-->
+                                        <!--<md-tooltip md-direction="top">编辑</md-tooltip>-->
+                                        <!--</md-button>-->
+                                        <!--<md-button class="md-just-icon md-simple md-primary" v-if="contenteditable===true" @click="contenteditable = false">-->
+                                        <!--<md-icon>save</md-icon>-->
+                                        <!--<md-tooltip md-direction="top">保存</md-tooltip>-->
+                                        <!--</md-button>-->
+                                        <md-button class="md-just-icon md-simple md-danger">
+                                            <md-icon>close</md-icon>
+                                            <md-tooltip md-direction="top">废弃</md-tooltip>
+                                        </md-button>
+                                    </md-table-cell>
+                                </md-table-row>
+                            </md-table>
+                        </md-card-content>
+                    </md-card>
+                </scroll>
             </div>
             <md-dialog-actions>
                 <Button :size="large"><</Button>
                 <Button>1</Button>
                 <Button>2</Button>
-                <Button>></Button>共2页&nbsp;&nbsp;&nbsp;
+                <Button>></Button>
+                共2页&nbsp;&nbsp;&nbsp;
                 到第<Input v-model="value2" style="width: 30px" placeholder="1"/>页
             </md-dialog-actions>
         </md-dialog>
 
-        <md-dialog :md-active.sync="showResume" style="width: 70%;height: 70%">
-            <projectRequireList upordown="上传"></projectRequireList>
+        <md-dialog :md-active.sync="showResume" style="width: 70%;height: 50%">
+            <scroll>
+                <projectRequireList upordown="上传"></projectRequireList>
+            </scroll>
         </md-dialog>
 
         <div class="md-layout">
             <div class="md-layout-item md-medium-size-100 md-xsmall-size-100 md-size-100">
-                <Table :columns="columns11" :data="requireList" :table-header-color="tableHeaderColor" size="large" border>
+                <Table :columns="columns11" :data="requireList" :table-header-color="tableHeaderColor" size="large"
+                       border>
                 </Table>
             </div>
         </div>
@@ -60,7 +66,8 @@
             <Button :size="large"><</Button>
             <Button>1</Button>
             <Button>2</Button>
-            <Button>></Button>共2页&nbsp;&nbsp;&nbsp;
+            <Button>></Button>
+            共2页&nbsp;&nbsp;&nbsp;
             到第<Input v-model="value2" style="width: 30px" placeholder="1"/>页
         </md-dialog-actions>
     </div>
@@ -68,7 +75,8 @@
 
 <script>
     import ResumeListComponent from "../../pages/GetResume/ResumeListComponent";
-    var info=
+
+    var info =
         {
             name: "prj-req",
             props: {
@@ -82,11 +90,11 @@
             },
             data() {
                 return {
-                    large:null,
-                    value2:null,
+                    large: null,
+                    value2: null,
                     showDialog: false,
-                    showResume:false,
-                    contenteditable:false,
+                    showResume: false,
+                    contenteditable: false,
                     selected: [],
                     columns11: [
                         {
@@ -106,7 +114,7 @@
                                 }
                             ],
                             filterMultiple: false,
-                            filterMethod (value, row) {
+                            filterMethod(value, row) {
                                 if (value === 1) {
                                     return row.name === '浦发项目组';
                                 } else if (value === 2) {
@@ -121,14 +129,14 @@
                             fixed: 'left',
                             className: 'demo-table-info-column',
                             sortable: true,
-                            render:(h, params) => {
-                                return h('a',{
+                            render: (h, params) => {
+                                return h('a', {
                                     on: {
                                         click: () => {
-                                            this.showDialog=true;
+                                            this.showDialog = true;
                                         }
                                     }
-                                },info.data().requireList[params.index].requireNum)
+                                }, info.data().requireList[params.index].requireNum)
                             }
                         },
                         {
@@ -141,14 +149,14 @@
                                     key: 'waitInterview',
                                     className: 'demo-table-info-column',
                                     align: 'center',
-                                    render:(h, params) => {
-                                        return h('a',{
+                                    render: (h, params) => {
+                                        return h('a', {
                                             on: {
                                                 click: () => {
-                                                    this.showResume=true;
+                                                    this.showResume = true;
                                                 }
                                             }
-                                        },info.data().requireList[params.index].waitInterview)
+                                        }, info.data().requireList[params.index].waitInterview)
                                     }
                                 },
                                 {
@@ -156,14 +164,14 @@
                                     key: 'interViewPass',
                                     className: 'demo-table-info-column',
                                     align: 'center',
-                                    render:(h, params) => {
-                                        return h('a',{
+                                    render: (h, params) => {
+                                        return h('a', {
                                             on: {
                                                 click: () => {
-                                                    this.showResume=true;
+                                                    this.showResume = true;
                                                 }
                                             }
-                                        },info.data().requireList[params.index].interViewPass)
+                                        }, info.data().requireList[params.index].interViewPass)
                                     }
                                 }
                             ],
@@ -178,14 +186,14 @@
                                     key: 'entry',
                                     align: 'center',
                                     className: 'demo-table-info-column',
-                                    render:(h, params) => {
-                                        return h('a',{
+                                    render: (h, params) => {
+                                        return h('a', {
                                             on: {
                                                 click: () => {
-                                                    this.showResume=true;
+                                                    this.showResume = true;
                                                 }
                                             }
-                                        },info.data().requireList[params.index].entry)
+                                        }, info.data().requireList[params.index].entry)
                                     }
                                 },
                                 {
@@ -193,14 +201,14 @@
                                     key: 'drop',
                                     align: 'center',
                                     className: 'demo-table-info-column',
-                                    render:(h, params) => {
-                                        return h('a',{
+                                    render: (h, params) => {
+                                        return h('a', {
                                             on: {
                                                 click: () => {
-                                                    this.showResume=true;
+                                                    this.showResume = true;
                                                 }
                                             }
-                                        },info.data().requireList[params.index].drop)
+                                        }, info.data().requireList[params.index].drop)
                                     }
                                 },
                                 {
@@ -208,14 +216,14 @@
                                     key: 'store',
                                     align: 'center',
                                     className: 'demo-table-info-column',
-                                    render:(h, params) => {
-                                        return h('a',{
+                                    render: (h, params) => {
+                                        return h('a', {
                                             on: {
                                                 click: () => {
-                                                    this.showResume=true;
+                                                    this.showResume = true;
                                                 }
                                             }
-                                        },info.data().requireList[params.index].store)
+                                        }, info.data().requireList[params.index].store)
                                     }
                                 }
                             ]
@@ -292,7 +300,7 @@
                             prjname: "浦发项目组",
                             type: "功能高级",
                             num: "3",
-                            test:false,
+                            test: false,
                             conform: 2,
                             time: "2019-6-14"
                         },
@@ -313,14 +321,13 @@
                     ]
                 };
             },
-            methods: {
-            },
+            methods: {},
         };
     export default info;
 </script>
 <style>
-    .ivu-table th.demo-table-info-column{
-        color:#00bcd4;
+    .ivu-table th.demo-table-info-column {
+        color: #00bcd4;
         font-size: 17px;
         font-family: Helvetica Neue;
     }
