@@ -52,7 +52,7 @@
         <md-dialog :md-active.sync="showResume" style="width: 70%;height: 50%">
             <scroll>
                 <md-card>
-                    <md-card-header :data-background-color="dataBackgroundColor" data-background-color="blue">
+                    <md-card-header data-background-color="blue">
                         <h4 class="title">简历列表页面</h4>
                     </md-card-header>
                 </md-card>
