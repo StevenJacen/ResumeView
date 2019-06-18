@@ -14,11 +14,13 @@
     </md-dialog>
 
     <md-dialog :md-active.sync="editResumeDialog">
-      <edit-profile-form data-background-color="blue"></edit-profile-form>
+      <Scroll>
+        <edit-profile-form data-background-color="blue"></edit-profile-form>
+      </Scroll>
 
       <md-dialog-actions>
         <md-button  class="md-info"  @click="editResumeDialog = false">关闭</md-button>
-        <md-button  class="md-success"  @click="editResumeDialog = false">推荐</md-button>
+        <md-button  class="md-success"  @click="editResumeDialog = false">新增</md-button>
       </md-dialog-actions>
     </md-dialog>
     <md-card>
@@ -29,9 +31,7 @@
       <md-card-content>
 
           <div class="md-autocomplete" style="margin:0px;height:110px;display:inline-block;">
-            <md-card style="margin:0px;">
-              <md-card-content>
-                <div class="md-layout md-gutter md-small-size-100 md-size-50">
+            <div class="md-layout md-gutter md-small-size-100 md-size-50" style="margin-left: 20px">
                   <div class="md-layout-item md-size-40">
                     <md-autocomplete
                             class="search"
@@ -52,10 +52,8 @@
                     <md-button class="md-round md-info" data-background-color="blue" >查询</md-button>
                   </div>
                 </div>
-              </md-card-content>
-            </md-card>
           </div>
-          <md-button class="md-round md-info" data-background-color="blue" style="float:right;font-size: medium;font-weight: bold;margin: 20px"  @click="showProjDialog = true">推荐项目</md-button>
+          <md-button class="md-round md-info" data-background-color="blue" style="float:right;font-size: medium;font-weight: bold;"  @click="showProjDialog = true">推荐项目</md-button>
           <ResumeListComponent upordown="下载"></ResumeListComponent>
 
       </md-card-content>

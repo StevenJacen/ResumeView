@@ -46,8 +46,10 @@
             </md-dialog-actions>
         </md-dialog>
 
-        <md-dialog :md-active.sync="showResume" style="width: 70%;height: 70%">
+        <md-dialog :md-active.sync="showResume" style="width: 70%;height: 50%">
+            <scroll>
             <projectRequireList upordown="上传"></projectRequireList>
+            </scroll>
         </md-dialog>
 
         <div class="md-layout">

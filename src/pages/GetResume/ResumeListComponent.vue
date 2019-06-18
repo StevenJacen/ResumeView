@@ -111,81 +111,65 @@
                         }
                     },
                     {
-                        title: '基本信息',
-                        key: 'baseinfo',
-                        align: 'center',
+                        title: '性别',
+                        key: 'sex',
                         className: 'demo-table-info-column',
-                        children: [
-                            {
-                                title: '性别',
-                                key: 'sex',
-                                className: 'demo-table-info-column',
-                                align: 'center',
-                                render: (h, params)=>{
-                                    return h('Button', {
-                                        props:{
-                                            type: 'text',
-                                            autosize: true
-                                        },
-                                        on: {
-                                            'click': (event) => {
-                                                this.showDialog=true;
-                                            }
-                                        }
-                                    },this.requireList[params.index].sex);
+                        align: 'center',
+                        render: (h, params)=>{
+                            return h('Button', {
+                                props:{
+                                    type: 'text',
+                                    autosize: true
+                                },
+                                on: {
+                                    'click': (event) => {
+                                        this.showDialog=true;
+                                    }
                                 }
-                            },
-                            {
-                                title: '学历',
-                                key: 'education',
-                                className: 'demo-table-info-column',
-                                align: 'center',
-                            },
-                            {
-                                title: '生日',
-                                key: 'birthday',
-                                className: 'demo-table-info-column',
-                                align: 'center',
-                            },
-                            {
-                                title: '薪资',
-                                key: 'money',
-                                className: 'demo-table-info-column',
-                                align: 'center',
-                            },
-                            {
-                                title: '手机',
-                                key: 'phone',
-                                className: 'demo-table-info-column',
-                                align: 'center',
-                            }
-                        ]
+                            },this.requireList[params.index].sex);
+                        }
                     },
                     {
-                        title: '项目信息',
-                        key: 'projinfo',
-                        align: 'center',
+                        title: '学历',
+                        key: 'education',
                         className: 'demo-table-info-column',
-                        children: [
-                            {
-                                title: '项目名',
-                                key: 'projname',
-                                className: 'demo-table-info-column',
-                                align: 'center',
-                            },
-                            {
-                                title: '状态',
-                                key: 'state',
-                                className: 'demo-table-info-column',
-                                align: 'center',
-                            },
-                            {
-                                title: '面试时间',
-                                key: 'interviewtime',
-                                className: 'demo-table-info-column',
-                                align: 'center',
-                            }
-                        ]
+                        align: 'center',
+                    },
+                    {
+                        title: '生日',
+                        key: 'birthday',
+                        className: 'demo-table-info-column',
+                        align: 'center',
+                    },
+                    {
+                        title: '薪资',
+                        key: 'money',
+                        className: 'demo-table-info-column',
+                        align: 'center',
+                    },
+                    {
+                        title: '手机',
+                        key: 'phone',
+                        className: 'demo-table-info-column',
+                        align: 'center',
+                    },
+                    {
+                        title: '项目名',
+                        key: 'projname',
+                        className: 'demo-table-info-column',
+                        align: 'center',
+                    },
+                    {
+                        title: '状态',
+                        key: 'state',
+                        className: 'demo-table-info-column',
+                        align: 'center',
+                    },
+                    {
+                        title: '面试时间',
+                        key: 'interviewtime',
+                        className: 'demo-table-info-column',
+                        align: 'center',
                     },
                     {
                         title: '简历'+this.upordown,
