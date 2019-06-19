@@ -49,13 +49,14 @@
             </md-dialog-actions>
         </md-dialog>
 
-        <md-dialog :md-active.sync="showResume" style="width: 70%;height: 50%">
+        <md-dialog :md-active.sync="showResume" style="width: 70%;height: 50%;overflow-x: scroll;overflow-y: hidden;">
             <scroll>
                 <md-card>
                     <md-card-header data-background-color="blue">
                         <h4 class="title">简历列表页面</h4>
                     </md-card-header>
                 </md-card>
+
                 <md-card-content>
                     <projectRequireList upordown="上传"></projectRequireList>
                 </md-card-content>
@@ -69,14 +70,7 @@
                 </Table>
             </div>
         </div>
-        <md-dialog-actions>
-            <Button :size="large"><</Button>
-            <Button>1</Button>
-            <Button>2</Button>
-            <Button>></Button>
-            共2页&nbsp;&nbsp;&nbsp;
-            到第<Input v-model="value2" style="width: 30px" placeholder="1"/>页
-        </md-dialog-actions>
+        <Page :total="15" show-elevator style="float: right" :page-size="3"/>
     </div>
 </template>
 
@@ -336,6 +330,5 @@
     .ivu-table th.demo-table-info-column {
         color: #00bcd4;
         font-size: 17px;
-        font-family: Helvetica Neue;
     }
 </style>

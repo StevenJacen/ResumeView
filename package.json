@@ -15,6 +15,7 @@
     "vue": "2.6.10",
     "vue-axios": "^2.1.4",
     "vue-clickaway": "2.2.2",
+    "vue-gemini-scrollbar": "^2.0.1",
     "vue-github-buttons": "3.1.0",
     "vue-material": "1.0.0-beta-8",
     "vue-router": "3.0.6",
