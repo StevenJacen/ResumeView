@@ -1,6 +1,7 @@
 <template>
 
     <div class="content">
+        <!--需求详情列表-->
         <md-dialog :md-active.sync="showDialog">
             <div>
                 <scroll>
@@ -14,7 +15,9 @@
                                     <md-table-cell md-label="项目名称">{{ item.prjname }}</md-table-cell>
                                     <md-table-cell md-label="类型">{{ item.type }}</md-table-cell>
                                     <md-table-cell md-label="数量">{{ item.num }}</md-table-cell>
-                                    <md-table-cell md-label="符合">{{ item.conform }}</md-table-cell>
+                                    <md-table-cell md-label="符合">
+                                        <input  style="width: 60%" v-model="item.conform" min="0" :max="item.num" type="number"/>
+                                    </md-table-cell>
                                     <md-table-cell md-label="发布时间">{{ item.time }}</md-table-cell>
                                     <!--<md-table-cell md-label="数量" v-if="contenteditable===true" >-->
                                     <!--<Input style="width: 60px" v-bind:value="item.num"/>-->
@@ -29,8 +32,8 @@
                                         <!--<md-tooltip md-direction="top">保存</md-tooltip>-->
                                         <!--</md-button>-->
                                         <md-button class="md-just-icon md-simple md-danger">
-                                            <md-icon>close</md-icon>
-                                            <md-tooltip md-direction="top">废弃</md-tooltip>
+                                            <md-icon><Icon type="md-checkmark" /></md-icon>
+                                            <md-tooltip md-direction="top">完成</md-tooltip>
                                         </md-button>
                                     </md-table-cell>
                                 </md-table-row>
@@ -38,17 +41,10 @@
                         </md-card-content>
                     </md-card>
                 </scroll>
+                <Page :total="15" show-elevator style="float: right" :page-size="3"/>
             </div>
-            <md-dialog-actions>
-                <Button :size="large"><</Button>
-                <Button>1</Button>
-                <Button>2</Button>
-                <Button>></Button>
-                共2页&nbsp;&nbsp;&nbsp;
-                到第<Input v-model="value2" style="width: 30px" placeholder="1"/>页
-            </md-dialog-actions>
         </md-dialog>
-
+        <!--简历列表-->
         <md-dialog :md-active.sync="showResume" style="width: 70%;height: 50%;overflow-x: scroll;overflow-y: hidden;">
             <scroll>
                 <md-card>
@@ -58,11 +54,12 @@
                 </md-card>
 
                 <md-card-content>
-                    <projectRequireList upordown="上传"></projectRequireList>
+                    <requireGetResumeList upordown="上传"  v-bind:getziduan=getziduan ></requireGetResumeList>
                 </md-card-content>
+                <Page :total="15" show-elevator style="float: right" :page-size="3"/>
             </scroll>
         </md-dialog>
-
+        <!--需求列表-->
         <div class="md-layout">
             <div class="md-layout-item md-medium-size-100 md-xsmall-size-100 md-size-100">
                 <Table :columns="columns11" :data="requireList" :table-header-color="tableHeaderColor" size="large"
@@ -75,7 +72,7 @@
 </template>
 
 <script>
-    import ResumeListComponent from "../../pages/GetResume/ResumeListComponent";
+    import RequireGetResumeList from "../../pages/Require/RequireGetResumeList";
 
     var info =
         {
@@ -87,7 +84,7 @@
                 }
             },
             components: {
-                "projectRequireList": ResumeListComponent
+                "requireGetResumeList": RequireGetResumeList
             },
             data() {
                 return {
@@ -96,6 +93,7 @@
                     showDialog: false,
                     showResume: false,
                     contenteditable: false,
+                    getziduan:false,
                     selected: [],
                     columns11: [
                         {
@@ -155,6 +153,7 @@
                                             on: {
                                                 click: () => {
                                                     this.showResume = true;
+                                                    this.getziduan=false;
                                                 }
                                             }
                                         }, info.data().requireList[params.index].waitInterview)
@@ -170,6 +169,7 @@
                                             on: {
                                                 click: () => {
                                                     this.showResume = true;
+                                                    this.getziduan=true;
                                                 }
                                             }
                                         }, info.data().requireList[params.index].interViewPass)
@@ -192,6 +192,7 @@
                                             on: {
                                                 click: () => {
                                                     this.showResume = true;
+                                                    this.getziduan=true;
                                                 }
                                             }
                                         }, info.data().requireList[params.index].entry)
@@ -207,6 +208,7 @@
                                             on: {
                                                 click: () => {
                                                     this.showResume = true;
+                                                    this.getziduan=true;
                                                 }
                                             }
                                         }, info.data().requireList[params.index].drop)
@@ -222,6 +224,7 @@
                                             on: {
                                                 click: () => {
                                                     this.showResume = true;
+                                                    this.getziduan=true;
                                                 }
                                             }
                                         }, info.data().requireList[params.index].store)
@@ -322,7 +325,8 @@
                     ]
                 };
             },
-            methods: {},
+            methods: {
+            },
         };
     export default info;
 </script>

@@ -5,6 +5,7 @@
                     class="md-layout-item md-medium-size-100 md-xsmall-size-100 md-size-100"
             >
                 <form>
+                    <scroll>
                     <md-card>
                         <md-card-header :data-background-color="dataBackgroundColor" data-background-color="blue">
                             <h4 class="title">需求新增页面</h4>
@@ -49,15 +50,33 @@
                                     </md-field>
                                 </div>
 
+                                <div class="md-layout-item">
+                                    <md-field>
+                                        <label for="state">状态</label>
+                                        <md-select v-model="state" name="state" id="state">
+                                            <md-option value="fight-club">常规</md-option>
+                                            <md-option value="godfather">紧急</md-option>
+                                        </md-select>
+                                    </md-field>
+                                </div>
+
                                 <div class="md-layout-item md-small-size-100 md-size-50">
                                     <md-field>
                                         <label>需求数量</label>
                                         <md-input v-model="DemandQuantity" type="text"></md-input>
                                     </md-field>
                                 </div>
+
+                                <div class="md-layout-item md-small-size-100 md-size-50">
+                                    <md-field>
+                                        <label>描述</label>
+                                        <md-textarea v-model="desc" type="text" ></md-textarea>
+                                    </md-field>
+                                </div>
                             </div>
                         </md-card-content>
                     </md-card>
+                    </scroll>
                 </form>
             </div>
             <md-dialog-actions>
@@ -124,6 +143,8 @@
                 type: null,
                 level: null,
                 DemandQuantity: null,
+                state:null,
+                desc:null,
                 aboutme:
                     "Lamborghini Mercy, Your chick she so thirsty, I'm in that two seat Lambo."
             }
@@ -137,4 +158,5 @@
     };
 </script>
 <style>
+
 </style>
