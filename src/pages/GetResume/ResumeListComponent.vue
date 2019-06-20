@@ -91,7 +91,7 @@
                         align: 'center',
                         fixed: 'left',
                         className: 'demo-table-info-column',
-                        filters: [
+                        /*filters: [
                             {
                                 label: '浦发项目组',
                                 value: 1
@@ -108,7 +108,7 @@
                             } else if (value === 2) {
                                 return row.name === '宁波项目组';
                             }
-                        }
+                        }*/
                     },
                     {
                         title: '性别',
@@ -130,10 +130,34 @@
                         }
                     },
                     {
-                        title: '学历',
+                        title: '教育经历',
                         key: 'education',
+                        width:200,
+                        align:"center",
                         className: 'demo-table-info-column',
-                        align: 'center',
+                        render: (h, params) => {
+                            var eduobj = params.row.education;
+                            var tableobj = [];
+                            for(var i=0;i<eduobj.length;i++){
+                               tableobj.push( h('tr',
+                                   [
+                                       h('td', {
+                                           props:{align:"center"},
+                                           style:{width:"100px",border:"0px"}
+                                           }, eduobj[i].title),
+                                       h('td', {
+                                           props:{align:"center"},
+                                           style:{width:"100px",border:"0px"}
+                                           }, eduobj[i].major)
+                                   ])
+                               )
+                            }
+                            return h('table',tableobj);
+                        }/*,
+                        renderHeader:(h,obj)=>{
+                            console.log(JSON.stringify(obj));
+                            return h();
+                        }*/
                     },
                     {
                         title: '生日',
@@ -196,7 +220,7 @@
                     {
                         name: "张三",
                         sex: "男",
-                        education: "本科",
+                        education: [{title:"本科",major:"会计"}],
                         birthday: "1993-1-1",
                         money: "5000",
                         phone: "12345678",
@@ -207,7 +231,7 @@
                     {
                         name: "李四",
                         sex: "男",
-                        education: "本科",
+                        education: [{title:"本科",major:"计算机"},{title:"大专",major:"机械"}],
                         birthday: "1993-1-1",
                         money: "5000",
                         phone: "12345678",
@@ -218,7 +242,7 @@
                     {
                         name: "王五",
                         sex: "男",
-                        education: "本科",
+                        education: [{title:"大专",major:"机械"}],
                         birthday: "1993-10-10",
                         money: "5000",
                         phone: "12345678",
@@ -229,7 +253,7 @@
                     {
                         name: "赵六",
                         sex: "男",
-                        education: "本科",
+                        education: [{title:"大专",major:"英语"}],
                         birthday: "1993-10-10",
                         money: "5000",
                         phone: "12345678",
@@ -240,7 +264,7 @@
                     {
                         name: "孙七",
                         sex: "男",
-                        education: "本科",
+                        education:  [{title:"本科",major:"英语"}],
                         birthday: "1993-10-10",
                         money: "5000",
                         phone: "12345678",
